@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-import EmailInputs from '../components/EmailInputs'
-import PasswordInputs from '../components/PasswordInputs'
+
+import EmailInput from '../components/EmailInput'
+import PasswordInput from '../components/PasswordInput'
+import AuthenicationService from '../services/AuthenticationService'
 
 
 class Register extends Component {
@@ -11,17 +13,29 @@ class Register extends Component {
     reEmail: null,
     password: null,
     rePassword: null,
-    valid: null
+    token: null,
+    user: null,
+    error: null
   }
   
   submitButton = (event) => {
-    event.preventDefault();
+      AuthenicationService.register({
+        email: this.state.email,
+        password: this.state.password
+      }).then(
+        response => {
+          console.log(response.data)
+        }
+      ).catch(error => {
+        this.setState({error: error})
+        console.log(error)
+      })
+    console.log(this.state.email)
+    console.log(this.state.password)
+          event.preventDefault()
+          event.target.reset()
+          this.props.history.push("/")
 
-    let email = this.state.email
-    let reEmail = this.state.reEmail
-
-    console.log("1st Email:" + email)
-    console.log("2nd Email:" + reEmail)
   }
 
   emailChanged = (event) => {
@@ -52,11 +66,11 @@ class Register extends Component {
     let password = this.state.password
     let rePassword = this.state.rePassword
 
-    let message = <p>Please enter a valid form</p>
+    let submitButton = null
 
     if (email === reEmail && email !== null && email.trim !== '') {
       if (password === rePassword && password !== null && password.trim !== '') {
-        message = <button className="btn btn-info" type="submit">Submit</button>              
+        submitButton = <button className="btn btn-info" type="submit">Submit</button>              
       }
     }
 
@@ -65,10 +79,12 @@ class Register extends Component {
         <form refs="form" onSubmit={this.submitButton.bind(this)}>
         <h1>Register Here</h1>
 
-        <EmailInputs changed={this.emailChanged} reChanged={this.reEmailChanged} />
-        <PasswordInputs changed={this.passwordChanged} reChanged={this.rePasswordChanged} />
+        <EmailInput label="Enter Email" changed={this.emailChanged} />
+        <EmailInput label="Re-Enter Email" changed={this.reEmailChanged} />
+        <PasswordInput label="Enter Password" changed={this.passwordChanged} />
+        <PasswordInput label="Re-Enter Password" changed={this.rePasswordChanged} />
 
-        {message}
+        {submitButton}
         </form>
     </div>
     );

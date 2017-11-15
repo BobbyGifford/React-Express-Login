@@ -6,9 +6,8 @@ import Register from '.././containers/Register'
 import Login from '.././containers/Login'
 import Test from './Test'
 
-const navbar = (props) => (
-
-  <div>
+const navbar = () => (
+    <div>
     <nav className="navbar navbar-toggleable-md navbar-light">
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
@@ -31,6 +30,6 @@ const navbar = (props) => (
     <Route path="/register" component={Register}/>
     <Route path="/login" component={Login} />
   </div>
-
 )
+
 export default navbar

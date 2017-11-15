@@ -11,9 +11,7 @@ import * as actions from '../store/actions'
 class Login extends Component {
   state = {
     email: null,
-    password: null,
-    user: null,
-    token: null
+    password: null
   }
 
   componentDidMount(){

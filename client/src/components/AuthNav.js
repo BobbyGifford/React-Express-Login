@@ -6,7 +6,9 @@ import Register from '.././containers/Register'
 import Login from '.././containers/Login'
 import Test from './Test'
 
-const authNavbar = () => (
+// edit this page for auth users
+
+const navbar = () => (
     <div>
     <nav className="navbar navbar-toggleable-md navbar-light">
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +19,7 @@ const authNavbar = () => (
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/register">Register</NavLink>
+            <NavLink className="nav-link" to="/register">This is auth nav</NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/login">Login</NavLink>
@@ -32,4 +34,4 @@ const authNavbar = () => (
   </div>
 )
 
-export default authNavbar
+export default navbar

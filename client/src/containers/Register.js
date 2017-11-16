@@ -34,8 +34,7 @@ class Register extends Component {
     console.log(this.state.password)
           event.preventDefault()
           event.target.reset()
-          this.props.history.push("/")
-
+          this.props.history.push("/login")
   }
 
   emailChanged = (event) => {

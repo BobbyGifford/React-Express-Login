@@ -14,11 +14,6 @@ class Login extends Component {
     password: null
   }
 
-  componentDidMount(){
-    console.log(this.props.token)
-    console.log(this.props.user)
-  }
-
   submitButton = (event) => {
     AuthenicationService.login({
       email: this.state.email,
@@ -27,13 +22,15 @@ class Login extends Component {
       response => {
         this.props.dispatch(actions.setUser(response.data.user))
         this.props.dispatch(actions.setToken(response.data.token))
+        this.props.dispatch(actions.setLoading(true))
       }
     ).catch(error => {
       console.log(error)
     })
     event.preventDefault()
     event.target.reset()
-    this.props.history.push("/")
+    this.props.dispatch(actions.setLoading(false))    
+    this.props.history.replace("/")
   }
 
   emailChanged = (event) => {
